@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Product, PetProductsService } from './pet-products.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Pets-Web';
+  productData: Product[] = [];
+
+  constructor(svc: PetProductsService) {
+    svc.loadProducts()
+      .subscribe(products => this.productData = products);
+  }
 }
